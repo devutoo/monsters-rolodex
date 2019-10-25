@@ -20,6 +20,12 @@ class App extends Component {
       .catch(error => console.log("I have failed"));
   }
 
+  onSearchChange = event =>
+    this.setState({
+      searchField: event.target.value,
+      title: event.target.value
+    });
+
   render() {
     const { monsters, searchField } = this.state;
     const filteredMonsters = monsters.filter(monster =>
@@ -28,10 +34,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1> Monsters Rolodex </h1>
+        <h1>Monsters Rolodex</h1>
         <SearchBox
           placeholder="search monster"
-          handleChange={e => this.setState({ searchField: e.target.value })}
+          onSearchChange={this.onSearchChange}
         />
         <CardList monsters={filteredMonsters} />
       </div>
